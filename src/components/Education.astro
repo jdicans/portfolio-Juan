@@ -1,0 +1,64 @@
+---
+import EducationItem from "./EducationItem.astro";
+
+const EDUCATION = [
+  {
+    date: "2024-2028",
+    title: "Ingeniería de Software",
+    collage: "Tecnológico de Antioquia",
+    location: "Medellin, Colombia",
+    description:
+      "Carrera universitaria centrada en el diseño, desarrollo y mantenimiento de soluciones tecnológicas. Enfocada en metodologías ágiles, análisis de requerimientos, arquitectura de software, gestión de proyectos y calidad del producto. Aporta una visión integral para liderar proyectos de transformación digital y escalar sistemas robustos.",
+  },
+  {
+    date: "2022-2023",
+    title: "Técnico en Desarrollo y Programación de Software",
+    collage: "SENA",
+    location: "Medellin, Colombia",
+    description:
+      "Formación técnica orientada al desarrollo de aplicaciones desde cero, incluyendo lógica de programación, estructuras de datos, diseño de interfaces y modelado de bases de datos. Fundamentación sólida en lenguajes de programación modernos y principios de ingeniería de software.",
+  },
+  {
+    date: "2024 (6 meses)",
+    title: "Certificación en Análisis de Datos",
+    collage: "Google & Comfenalco",
+    location: "",
+    description:
+      "Especialización intensiva en el procesamiento y análisis de datos utilizando herramientas como Python, Pandas, Matplotlib y entornos de visualización. Capacitación en la generación de insights accionables y presentación de informes orientados a la toma de decisiones estratégicas.",
+  },
+  {
+    date: "2024",
+    title: "Competencias y Habilidades Socioemocionales para un Entorno Laboral",
+    collage: "International Youth Foundation",
+    location: "",
+    description:
+      "Certificación que fortalece habilidades blandas como comunicación efectiva, trabajo en equipo, pensamiento crítico y adaptación al cambio. Preparación integral para desempeñarse con éxito en entornos colaborativos y dinámicos del mercado laboral actual.",
+  },
+  {
+    date: "2019",
+    title: "Taller Teórico de Pensamiento Computacional – Desarrollo de Apps",
+    collage: "Universidad EAFIT",
+    location: "",
+    description:
+      "Taller teórico sobre pensamiento computacional y desarrollo de aplicaciones.",
+  },
+  {
+    date: "2019",
+    title: "Taller Teórico de Pensamiento Computacional – Makers",
+    collage: "Universidad EAFIT",
+    location: "",
+    description:
+      "Taller teórico sobre pensamiento computacional y cultura maker.",
+  }
+]
+---
+
+<ol class="relative mt-16">
+  {
+    EDUCATION.map((education) => (
+      <li>
+        <EducationItem {...education} />
+      </li>
+    ))
+  }
+</ol>

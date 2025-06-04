@@ -1,26 +1,42 @@
 ---
 const currentYear = new Date().getFullYear()
 ---
-
+{/* Imágenes decorativas centradas, más grandes y sin espacios extra */}
+<div class="w-full flex flex-row justify-center items-center gap-x-32">
+  <img 
+    src="nube2.png" 
+    alt="Decoración izquierda" 
+    class="hidden md:block w-32 h-32 opacity-70 pointer-events-none"
+    style="z-index:1;"
+  />
+  <span class="text-xl font-semibold text-purple-600 dark:text-purple-400 select-none text-center">
+    Gracias por ver
+  </span>
+  <img 
+    src="nube3.png" 
+    alt="Decoración derecha" 
+    class="hidden md:block w-32 h-32 opacity-70 pointer-events-none"
+    style="z-index:1;"
+  />
+</div>
 <footer
-  class="opacity-80 m-4 min-[375px]:pl-4 md:pl-0 mt-16 w-full mx-auto container lg:max-w-4xl md:max-w-2xl mb-10 flex justify-center"
+  class="opacity-80 m-4 min-[375px]:pl-4 md:pl-0 mt-8 w-full mx-auto container lg:max-w-4xl md:max-w-2xl mb-10 flex justify-center"
 >
+
   <div
     class="rounded-lg w-full max-w-screen-xl mx-auto md:flex md:items-center md:justify-between py-4"
   >
     <span class="text-sm sm:text-center text-zinc-800/90 dark:text-zinc-200/90"
       >© {currentYear}
-      <a href="https://midu.dev/" class="hover:underline">midudev</a>. Casi
+      <a href="https://midu.dev/" class="hover:underline">Nube. Casi
       todos los derechos reservados
     </span>
     <ul
       class="flex flex-wrap items-center mt-3 text-sm font-medium dark:text-white/90 sm:mt-0"
     >
+      
       <li>
-        <a href="/#sobre-mi" class="hover:underline me-4 md:me-6">Sobre mí</a>
-      </li>
-      <li>
-        <a id="contacto" href="mailto:miduga@gmail.com" class="hover:underline"
+        <a id="contacto" href="mailto:juandiegocalle@gmail.com" class="hover:underline"
           >Contacto</a
         >
       </li>

@@ -2,27 +2,44 @@
 import ExperienceItem from "./ExperienceItem.astro"
 const EXPERIENCE = [
   {
-    date: "Actualmente...",
-    title: "Creador de Contenido",
-    company: "Twitch",
+    date: "2025",
+    title: "Desarrollador Web",
+    company: "Sitios Webs LLC",
+    location: "EE. UU. (Remoto)",
     description:
-      "Divulgo sobre programación y desarrollo web en diferentes plataformas. Galardonado como mejor creador de contenido de habla no-inglesa en 2022 y mejor comunidad en 2023 por GitHub.",
-    link: "https://twitch.tv/midudev",
+      "Desarrollar soluciones web personalizadas utilizando PHP, Laravel, React y JavaScript, trabajando en un entorno ágil para crear sitios optimizados y responsivos. Integro bases de datos y optimizo la experiencia del usuario en cada proyecto.",
   },
   {
-    date: "Septiembre 2022",
-    title: "Principal Frontend Engineer",
-    company: "Adevinta Spain",
+    date: "2025",
+    title: "Gestión y Análisis de Proyectos TI",
+    company: "Sincenso",
+    location: "Medellin, Colombia",
     description:
-      "Responsable de la plataforma, componentes y utilidades para la creación y desarrollo de aplicaciones web. Mejora de un 30% en la entrega de software. Implantación de medidas de integración continua y despliegue con A/B testing en más de 15 equipos.",
+      "Asesoré en la planificación y ejecución de proyectos TI, optimizando recursos mediante análisis de viabilidad y propuestas estratégicas de mejora. Apliqué metodologías ágiles e híbridas para alinear la tecnología con los objetivos del negocio. Desarrollé habilidades en gestión de proyectos (Scrum, PMBOK), análisis técnico-financiero y herramientas colaborativas, fortaleciendo además el liderazgo, la comunicación y la toma de decisiones estratégicas.",
   },
+  {
+    date: "2024-2025",
+    title: "Desarrollador Web y Diseñador Gráfico",
+    company: "Freelancer",
+    location: "Medellin, Colombia",
+    description:
+      "Desarrollé sitios web responsivos usando React, Next.js y WordPress, integrando principios de UX/UI para mejorar la experiencia del usuario. Diseñé identidades visuales y material gráfico con Figma, Illustrator y Photoshop, fortaleciendo habilidades técnicas en desarrollo frontend y diseño, junto a competencias blandas como comunicación con clientes, creatividad y gestión del tiempo.",
+  },
+  {
+    date: "Enero-junio 2024",
+    title: "Analista de Datos (6 meses)",
+    company: "Comfenalco (Sector Educación)",
+    location: "Medellin, Colombia",
+    description:
+      "Como Analista de Datos, analicé PQRs para identificar patrones y tendencias en la calidad del servicio, generando informes estratégicos que apoyaron la toma de decisiones en la mejora educativa. Automatizé procesos de análisis utilizando Python, Matplotlib y Pandas, optimizando tiempos y mejorando la precisión de los resultados. Desarrollé habilidades en SQL, Power BI, y automatización de procesos, complementadas con competencias blandas en análisis crítico, resolución de problemas y comunicación efectiva.",
+  }
 ]
 ---
 
 <ol class="relative mt-16">
   {
     EXPERIENCE.map((experience) => (
-      <li class="">
+      <li>
         <ExperienceItem {...experience} />
       </li>
     ))

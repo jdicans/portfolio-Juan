@@ -1,0 +1,13 @@
+---
+import CinematicHero from '@/components/cinematic/CinematicHero'
+import type { PortfolioContent } from '@/i18n/types'
+
+interface Props {
+  content: PortfolioContent
+  alternateUrl: string
+}
+
+const { content, alternateUrl } = Astro.props
+---
+
+<CinematicHero client:load content={content} alternateUrl={alternateUrl} />

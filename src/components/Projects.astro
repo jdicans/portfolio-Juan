@@ -1,132 +1,54 @@
 ---
-import GitHub from "./icons/GitHub.astro"
-import NextJS from "./icons/NextJS.astro"
-import Tailwind from "./icons/Tailwind.astro"
-import Link from "./icons/Link.astro"
-import LinkButton from "./LinkButton.astro"
+import GitHub from './icons/GitHub.astro'
+import Link from './icons/Link.astro'
+import type { PortfolioContent } from '@/i18n/types'
 
-const TAGS = {
-  NEXT: {
-    name: "Next.js",
-    class: "bg-black text-white",
-    icon: NextJS,
-  },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-[#003159] text-white",
-    icon: Tailwind,
-  },
+interface Props {
+  content: PortfolioContent
 }
-const PROJECTS = [
-  {
-    title: "Bytte Software de reservar",
-    description:
-      "Bytte es un software de reserva, su desarrollado esta distribuido en Front con React y Nexjs y back con Python y fast api, la base de datos con SQL",
-    image: "/projects/Dashboard.png",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
-  },
-  {
-    title: "Anomaly website react - página empresarial de la agencia Anomaly Studio",
-    description:
-      "Anomaly es una agencia de desarrollo web y marketing digital, su página web está desarrollada con React y Tailwind CSS.",
-    github: "https://github.com/AlejoDec/Anomaly-website-react?tab=readme-ov-file",
-    link: "https://anomalystudio.com.co/",
-    image: "/projects/anomaly.png",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
-  },
-  {
-    title: "Consultor Veterinario - Software para gestión empresarial veterinaria",
-    description:
-      "Plataforma donde los veterinarios pueden gestionar sus casos clínicos, pacientes y citas. Desarrollado con Next.js y Tailwind CSS.",
-    github: "https://github.com/jdicans/consultor-veterinario",  
-    image: "/projects/veterinaria.png",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
-  },
-  {
-    title: "KTX Custom Glass",
-    description: "Sitio web corporativo para empresa de vidrios personalizados en EE.UU.",
-    link: "https://ktxcustomglass.com/",
-    image: "/projects/ktx.png",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
-  },
-  {
-    title: "SitioWebs - Agencia de desarrollo web",
-    description: "Página institucional para SitioWebs, enfocada en soluciones digitales y branding.",
-    link: "https://sitiowebs.com/",
-    image: "/projects/sitiowebs.png",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
-  },
-  {
-    title: "Chic Custom Cakes",
-    description: "E-commerce para pastelería personalizada con enfoque visual y experiencia móvil.",
-    link: "https://chiccustomcakes.com/",
-    image: "/projects/chiccustomcakes.png",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
-  },
-  {
-    title: "Valorar Eficaz",
-    description: "Landing page corporativa para empresa de avalúos, con enfoque profesional.",
-    link: "https://valorareficaz.com/",
-    image: "/projects/valorar.png",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
-  },
-  {
-    title: "ZonaWork",
-    description: "Plataforma tipo coworking para espacios compartidos, conectividad y gestión.",
-    link: "https://zonawork.co/",
-    image: "/projects/zonawork.png",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
-  },
-]
+
+const { content } = Astro.props
+const { ui } = content
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:gap-8 2xl:grid-cols-3 2xl:gap-8">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
-      <article class="flex flex-col space-y-8 group h-full">
-        <div class="w-full">
-          <div class="relative flex flex-col items-center gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl group-hover:-translate-y-1 group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-            <img alt={title} class="object-cover object-top w-full h-56 transition duration-500 sm:h-full group-hover:scale-105" loading="lazy" src={image} />
-          </div>
+    content.projects.map(({ image, title, description, tags, link, github }) => (
+      <article class="paper-card group overflow-hidden transition-shadow hover:shadow-sm">
+        <div class="relative overflow-hidden">
+          <img
+            alt={title}
+            class="relative z-0 h-52 w-full object-cover object-top transition duration-500 group-hover:scale-[1.02] sm:h-56 xl:h-64 2xl:h-72"
+            loading="lazy"
+            src={image}
+          />
         </div>
-        <div class="w-full max-w-lg mx-auto">
-          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-            {title}
-          </h3>
-          <div class="flex flex-wrap mt-2">
-            <ul class="flex flex-row mb-2 gap-x-2">
-              {tags.map((tag) => (
-                <li>
-                  <span
-                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-                  >
-                    <tag.icon class="size-4" />
-                    {tag.name}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
-            <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {github && (
-                <LinkButton href={github}>
-                  <GitHub class="size-6" />
-                  Code
-                </LinkButton>
-              )}
-              {link && (
-                <LinkButton href={link}>
-                  <Link class="size-4" />
-                  Preview
-                </LinkButton>
-              )}
-            </footer>
-          </div>
+        <div class="flex flex-1 flex-col p-5 md:p-6">
+          <h3 class="font-display text-xl uppercase leading-[0.9] text-white">{title}</h3>
+          <ul class="mt-3 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <li>
+                <span class="tag-pill">{tag}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-4 flex-1 text-sm leading-[1.25] tracking-[-0.42px] text-ash-gray">{description}</p>
+          <footer class="mt-5 flex gap-5 border-t border-white/10 pt-4">
+            {github && (
+              <a href={github} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-fog-gray transition-colors hover:text-white">
+                <GitHub class="size-4" />
+                {ui.code}
+              </a>
+            )}
+            {link && (
+              <a href={link} target="_blank" rel="noopener noreferrer" class="link-accent inline-flex items-center gap-1.5 text-xs font-medium">
+                <Link class="size-4" />
+                {ui.live}
+              </a>
+            )}
+          </footer>
         </div>
       </article>
     ))
   }
 </div>
-
-
-

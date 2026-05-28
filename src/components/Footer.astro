@@ -1,44 +1,45 @@
 ---
-const currentYear = new Date().getFullYear()
----
-{/* Imágenes decorativas centradas, más grandes y sin espacios extra */}
-<div class="w-full flex flex-row justify-center items-center gap-x-32">
-  <img 
-    src="nube2.png" 
-    alt="Decoración izquierda" 
-    class="hidden md:block w-32 h-32 opacity-70 pointer-events-none"
-    style="z-index:1;"
-  />
-  <span class="text-xl font-semibold text-purple-600 dark:text-purple-400 select-none text-center">
-    Gracias por ver
-  </span>
-  <img 
-    src="nube3.png" 
-    alt="Decoración derecha" 
-    class="hidden md:block w-32 h-32 opacity-70 pointer-events-none"
-    style="z-index:1;"
-  />
-</div>
-<footer
-  class="opacity-80 m-4 min-[375px]:pl-4 md:pl-0 mt-8 w-full mx-auto container lg:max-w-4xl md:max-w-2xl mb-10 flex justify-center"
->
+import { getPortfolio, getAlternateUrl, type Locale } from '@/i18n'
+import { getSectionIds } from '@/i18n/sections'
 
+interface Props {
+  lang?: Locale
+}
+
+const { lang = 'es' } = Astro.props
+const content = getPortfolio(lang)
+const ids = getSectionIds(lang)
+const alternateUrl = getAlternateUrl(lang)
+
+const currentYear = new Date().getFullYear()
+const contactHref = lang === 'en' ? `/en/#${ids.contact}` : `/#${ids.contact}`
+---
+
+<footer class="border-t border-white/10 bg-black px-4 py-10 sm:px-6 md:px-12">
   <div
-    class="rounded-lg w-full max-w-screen-xl mx-auto md:flex md:items-center md:justify-between py-4"
+    class={`mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 font-mono text-xs tracking-[-0.36px] text-fog-gray sm:flex-row`}
   >
-    <span class="text-sm sm:text-center text-zinc-800/90 dark:text-zinc-200/90"
-      >© {currentYear}
-      <a href="https://midu.dev/" class="hover:underline">Nube. Casi
-      todos los derechos reservados
-    </span>
-    <ul
-      class="flex flex-wrap items-center mt-3 text-sm font-medium dark:text-white/90 sm:mt-0"
-    >
-      
+    <span>© {currentYear} {content.site.name}</span>
+    <ul class="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
       <li>
-        <a id="contacto" href="mailto:juandiegocalle@gmail.com" class="hover:underline"
-          >Contacto</a
-        >
+        <a href={contactHref} class="transition-colors hover:text-white">
+          {content.ui.footerContact}
+        </a>
+      </li>
+      <li>
+        <a href={content.site.github} target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-white">
+          GitHub
+        </a>
+      </li>
+      <li>
+        <a href={content.site.linkedin} target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-white">
+          LinkedIn
+        </a>
+      </li>
+      <li>
+        <a href={alternateUrl} class="transition-colors hover:text-white">
+          {content.ui.langSwitch}
+        </a>
       </li>
     </ul>
   </div>

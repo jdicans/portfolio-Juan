@@ -1,0 +1,22 @@
+---
+import type { PortfolioContent } from '@/i18n/types'
+
+interface Props {
+  content: PortfolioContent
+}
+
+const { content } = Astro.props
+---
+
+<div class="grid gap-6 md:grid-cols-2 2xl:gap-8">
+  {
+    content.certifications.map((cert) => (
+      <article class="paper-card p-6 md:p-8">
+        <p class="font-mono-caption text-fog-gray">{cert.date}</p>
+        <h3 class="mt-2 font-display text-xl uppercase leading-[0.9] text-white">{cert.title}</h3>
+        <p class="mt-1 text-sm font-medium text-ash-gray">{cert.issuer}</p>
+        <p class="mt-3 text-sm leading-[1.25] tracking-[-0.42px] text-fog-gray">{cert.description}</p>
+      </article>
+    ))
+  }
+</div>

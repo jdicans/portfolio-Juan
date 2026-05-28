@@ -1,0 +1,65 @@
+---
+import type { PortfolioContent } from '@/i18n/types'
+
+interface Props {
+  content: PortfolioContent
+}
+
+const { content } = Astro.props
+const { caseStudy: cs, ui } = content
+---
+
+<article class="paper-card overflow-hidden">
+  <div class="grid md:grid-cols-2">
+    <div class="relative min-h-[220px] md:min-h-full">
+      <img
+        src={cs.image}
+        alt={cs.imageAlt}
+        class="h-full w-full object-cover object-top"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:bg-gradient-to-r md:from-black/60" />
+    </div>
+    <div class="solid-card flex flex-col justify-center p-6 md:p-10">
+      <p class="font-mono-caption text-fog-gray">{cs.subtitle}</p>
+      <h3 class="mt-2 font-display text-4xl uppercase leading-[0.9] text-white md:text-5xl">{cs.title}</h3>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {cs.tags.map((tag) => (
+          <li>
+            <span class="tag-pill">{tag}</span>
+          </li>
+        ))}
+      </ul>
+      <dl class="mt-8 space-y-5 text-sm">
+        <div>
+          <dt class="font-mono-caption text-fog-gray">{ui.caseStudyProblem}</dt>
+          <dd class="mt-2 leading-[1.25] text-ash-gray">{cs.problem}</dd>
+        </div>
+        <div>
+          <dt class="font-mono-caption text-fog-gray">{ui.caseStudyStack}</dt>
+          <dd class="mt-2 leading-[1.25] text-ash-gray">{cs.stack}</dd>
+        </div>
+        <div>
+          <dt class="font-mono-caption text-fog-gray">{ui.caseStudyRole}</dt>
+          <dd class="mt-2 leading-[1.25] text-ash-gray">{cs.role}</dd>
+        </div>
+        <div>
+          <dt class="font-mono-caption text-fog-gray">{ui.caseStudyOutcome}</dt>
+          <dd class="mt-2 leading-[1.25] text-white">{cs.outcome}</dd>
+        </div>
+      </dl>
+      {
+        cs.link && (
+          <a
+            href={cs.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary mt-8 w-fit"
+          >
+            {ui.live}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

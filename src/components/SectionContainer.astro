@@ -1,11 +1,21 @@
 ---
-const { class: className, id } = Astro.props
+const { sectionClass: sectionClassName, id } = Astro.props
 ---
 
 <section
   id={id}
   data-section={id}
-  class={`section ${className} scroll-m-20 w-full mx-auto container lg:max-w-4xl md:max-w-2xl`}
+  class:list={[
+    'section-reveal',
+    'section-cinematic',
+    'relative',
+    'scroll-m-20',
+    'w-full',
+    'overflow-hidden',
+    sectionClassName,
+  ]}
 >
-  <slot />
+  <div class="relative z-10">
+    <slot />
+  </div>
 </section>

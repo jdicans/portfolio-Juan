@@ -1,0 +1,92 @@
+---
+import CinematicLayout from '@/layouts/CinematicLayout.astro'
+import CinematicHeroIsland from '@/components/CinematicHeroIsland.astro'
+import AboutMe from '@/components/AboutMe.astro'
+import Experience from '@/components/Experience.astro'
+import Projects from '@/components/Projects.astro'
+import SectionContainer from '@/components/SectionContainer.astro'
+import TitleSection from '@/components/TitleSection.astro'
+import Education from '@/components/Education.astro'
+import Skills from '@/components/Skills.astro'
+import Certifications from '@/components/Certifications.astro'
+import Contact from '@/components/Contact.astro'
+import CaseStudy from '@/components/CaseStudy.astro'
+import { getPortfolio, getAlternateUrl, getLangPath, type Locale } from '@/i18n'
+import { getSectionIds } from '@/i18n/sections'
+
+interface Props {
+  lang: Locale
+}
+
+const { lang } = Astro.props
+const content = getPortfolio(lang)
+const ids = getSectionIds(lang)
+const basePath = getLangPath(lang)
+const alternateUrl = getAlternateUrl(lang)
+const canonical = Astro.site ? new URL(basePath, Astro.site).href : basePath
+const alternateCanonical = Astro.site ? new URL(alternateUrl, Astro.site).href : alternateUrl
+const xDefaultUrl = Astro.site ? new URL('/', Astro.site).href : '/'
+---
+
+<CinematicLayout
+  lang={lang}
+  title={content.site.title}
+  description={content.site.description}
+  canonical={canonical}
+  alternateLang={lang === 'es' ? 'en' : 'es'}
+  alternateUrl={alternateCanonical}
+  xDefaultUrl={xDefaultUrl}
+  ogImage={content.site.ogImage}
+>
+  <CinematicHeroIsland content={content} alternateUrl={alternateUrl} />
+
+  <main class="bg-black">
+    <div
+      class:list={[
+        'mx-auto w-full max-w-6xl px-4 sm:px-6 md:px-12',
+        'xl:max-w-7xl xl:px-14',
+        '2xl:max-w-[min(100%,90rem)] 2xl:px-16',
+      ]}
+    >
+      <SectionContainer id={ids.stack} sectionClass="py-20 md:py-[80px]">
+        <TitleSection label="01">{content.sections.stack}</TitleSection>
+        <Skills content={content} />
+      </SectionContainer>
+
+      <SectionContainer id={ids.experience} sectionClass="py-20 md:py-[80px]">
+        <TitleSection label="02">{content.sections.experience}</TitleSection>
+        <Experience content={content} />
+      </SectionContainer>
+
+      <SectionContainer id={ids.certifications} sectionClass="py-20 md:py-[80px]">
+        <TitleSection label="03">{content.sections.certifications}</TitleSection>
+        <Certifications content={content} />
+      </SectionContainer>
+
+      <SectionContainer id={ids.education} sectionClass="py-20 md:py-[80px]">
+        <TitleSection label="04">{content.sections.education}</TitleSection>
+        <Education content={content} />
+      </SectionContainer>
+
+      <SectionContainer id={ids.projects} sectionClass="py-20 md:py-[80px]">
+        <TitleSection label="05">{content.sections.projects}</TitleSection>
+        <Projects content={content} />
+      </SectionContainer>
+
+      <SectionContainer id={ids.caseStudy} sectionClass="py-20 md:py-[80px]">
+        <TitleSection label="06">{content.sections.caseStudy}</TitleSection>
+        <CaseStudy content={content} />
+      </SectionContainer>
+
+      <SectionContainer id={ids.about} sectionClass="py-20 md:py-[80px]">
+        <TitleSection label="07">{content.sections.about}</TitleSection>
+        <AboutMe content={content} />
+      </SectionContainer>
+
+      <SectionContainer id={ids.contact} sectionClass="py-20 md:pb-[80px]">
+        <TitleSection label="08">{content.sections.contact}</TitleSection>
+        <Contact content={content} />
+      </SectionContainer>
+    </div>
+  </main>
+</CinematicLayout>

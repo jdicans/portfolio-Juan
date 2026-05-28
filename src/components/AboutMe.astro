@@ -1,70 +1,75 @@
 ---
- const personalImageAlt = "Miguel Ángel"
+import type { PortfolioContent } from '@/i18n/types'
+import { getSectionIds } from '@/i18n/sections'
+
+interface Props {
+  content: PortfolioContent
+}
+
+const { content } = Astro.props
+const { about, locale } = content
+const contactId = getSectionIds(locale).contact
+const contactHref = locale === 'en' ? `/en/#${contactId}` : `/#${contactId}`
+const contactLabel = locale === 'en' ? 'Get in touch' : 'Escríbeme'
 ---
-<article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row relative">
-  <div
-    class="[&>p]:mb-4 [&>p>strong]:text-purple-500 dark:[&>p>strong]:text-purple-500 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
-  >
-    <p>
-      Soy Juan Diego, también conocido como <strong>Nube</strong>, un apasionado Ingeniero de Software en formación con sólida experiencia en <strong>desarrollo web</strong> y <strong>análisis de datos</strong>. Combino pensamiento lógico con creatividad para construir soluciones digitales que generan valor real.
-    </p>
-    <p>
-      Con más de <strong>3 años de experiencia</strong> creando <strong>aplicaciones web</strong>, <strong>APIs robustas</strong> y <strong>tableros analíticos</strong>, he trabajado tanto con <strong>startups</strong> como en <strong>entornos corporativos</strong>, siempre con foco en la <strong>innovación</strong>, la <strong>eficiencia</strong> y la <strong>escalabilidad</strong>. Domino tecnologías como <strong>Python</strong>, <strong>JavaScript</strong>, <strong>React</strong>, <strong>FastAPI</strong>, <strong>MySQL</strong> y <strong>Laravel</strong>, y tengo experiencia con herramientas analíticas como <strong>Pandas</strong>, <strong>Matplotlib</strong> y <strong>Power BI</strong>.
-    </p>
-    <p>
-      Me mueven los <strong>retos tecnológicos</strong>, el <strong>aprendizaje constante</strong> y los <strong>proyectos con impacto</strong>. Aplico <strong>metodologías ágiles</strong>, entiendo la <strong>lógica del negocio</strong> y estoy preparado para contribuir estratégicamente desde el <strong>desarrollo</strong> hasta la <strong>toma de decisiones basada en datos</strong>.
-    </p>
-    <br>
+
+<article class="paper-card overflow-hidden">
+  <div class="grid lg:grid-cols-5">
+    <div class="relative lg:col-span-2">
+      <img
+        width="480"
+        height="560"
+        src="/me.jpg"
+        alt={about.imageAlt}
+        class="h-64 w-full object-cover object-center sm:h-80 lg:h-full lg:min-h-[420px]"
+        loading="lazy"
+      />
+      <div class="absolute bottom-0 left-0 bg-gradient-to-t from-black via-black/50 to-transparent p-6 lg:hidden">
+        <p class="font-mono-caption text-fog-gray">Nube</p>
+        <p class="mt-1 font-display text-2xl uppercase text-white">Juan Diego Calleg</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col justify-center p-6 sm:p-8 lg:col-span-3 lg:p-10">
+      <p class="hidden font-mono-caption uppercase text-fog-gray lg:block">
+        Juan Diego Calleg · Nube
+      </p>
+
+      <h3 class="mt-2 font-display text-3xl uppercase leading-[0.9] text-white sm:text-4xl">
+        {about.tagline}
+      </h3>
+
+      <dl class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {
+          about.highlights.map((item) => (
+            <div class="rounded-btn border border-white/10 bg-white/5 px-3 py-2.5">
+              <dt class="font-mono text-[9px] uppercase tracking-[-0.36px] text-fog-gray">{item.label}</dt>
+              <dd class="mt-1 text-xs font-semibold uppercase text-white">{item.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <p class="mt-6 text-sm leading-[1.25] tracking-[-0.42px] text-ash-gray">{about.intro}</p>
+
+      <div class="mt-6">
+        <p class="font-mono-caption uppercase text-fog-gray">{about.focusTitle}</p>
+        <ul class="mt-3 flex flex-wrap gap-2">
+          {
+            about.focusAreas.map((area) => (
+              <li>
+                <span class="tag-pill">{area}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <p class="mt-6 text-sm leading-[1.25] tracking-[-0.42px] text-fog-gray">{about.closing}</p>
+
+      <a href={contactHref} class="btn-primary mt-8 w-fit">
+        {contactLabel}
+      </a>
+    </div>
   </div>
- 
-  
-
-  <img width="200" height="200" src="/me.jpg" alt={personalImageAlt} class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20 " style="object-position: 50% 50%">
-  <br>
-  <br>
-  
 </article>
-
-<!-- FRASES PROHIBIDAS EN VUESTRO PORTFOLIO
-
-<p>
-  Mi sueño es encontrar mi primer empleo en el mundo de la programación. Una empresa donde pueda seguir aprendiendo. ❌
-</p>
-
-<p>
-  ❌ Apasionado de la programación desde chekitito. Me encantan los ordenadores y crear páginas web buenas y rápidas con la última tecnología.
-</p>
-
-<p>
-  Trabajo bien en equipo. Siempre estoy aprendiendo cosas nuevas.
-</p>
-
--------------------------------------
-
---------------------------------------
-
-<p>
-  ¡Soy Leo! Estudié Derecho Empresarial y, tras años ejerciendo, me pasé al mundo de la Programación. Desde entonces disfruto creando experiencias web para los usuarios.
-</p>
-
-<p>
-  Entre mis éxitos destaco que durante el Grado Superior, ayudé a mis compañeros a aprender sobre TDD. Me encanta el testing, creo en su importancia, y me gusta compartir mi conocimiento sobre ello.
-</p>
-
-<p>
-  Cuento con experiencia desarrollando aplicaciones móviles, y he creado una iniciativa llamada X para mezclar mis dos pasiones: la programación y el derecho. Ayudando a la sociedad a acceso a una defensa justa.
-</p>
-
----------------------------------------
-
-<p>Me llamo Sara, tengo 25 años y soy de Santiago, Chile 🇨🇱. Terminé mis estudios como Desarrolladora Web. Me encanta enfocarme en la parte del rendimiento, para ofrecer la mejora experiencia al usuario.</p>
-
-<p>
-  Colaboro en la organización del MeetUp local BeerJS donde reunimos a desarrolladores de Santiago para compartir conocimiento y experiencias. El año 2023 hicimos un total de 25 charlas con más de 2000 asistentes.
-</p>
-
-<p>
-  Además de participar activamente en la comunidad, he participado en la Hackathon de Midudev quedando en 3er puesto con mi proyecto _Chatty_, donde usando IA podías interactuar con un PDF. ¡Échale un vistazo!
-</p>
-
--->

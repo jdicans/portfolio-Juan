@@ -1,5 +1,14 @@
-<h2
-	class={`flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white ${Astro.props.className}`}
->
+---
+const { label } = Astro.props
+---
+
+<div class="mb-12 border-b border-white/10 pb-6">
+  {label && (
+    <p class="font-mono-caption mb-3 uppercase text-fog-gray">
+      {label}
+    </p>
+  )}
+  <h2 class="font-display text-4xl uppercase leading-[0.9] tracking-[-1.44px] text-white md:text-5xl">
     <slot />
-</h2>
+  </h2>
+</div>

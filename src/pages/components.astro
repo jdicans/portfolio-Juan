@@ -1,26 +1,31 @@
 ---
-import Badge from "@/components/Badge.astro"
-import SectionContainer from "@/components/SectionContainer.astro"
-import SocialPill from "@/components/SocialPill.astro"
-import LinkedInIcon from "@/components/icons/LinkedIn.astro"
+import Badge from '@/components/Badge.astro'
+import SectionContainer from '@/components/SectionContainer.astro'
+import SocialPill from '@/components/SocialPill.astro'
+import LinkedInIcon from '@/components/icons/LinkedIn.astro'
+import CinematicLayout from '@/layouts/CinematicLayout.astro'
 
-import Layout from "@/layouts/Layout.astro"
+const site = 'https://porfolio.dev/'
 ---
 
-<Layout
-  title="Design System porfolio.dev"
-  description="El catálogo de componentes de nuestro porfolio"
+<CinematicLayout
+  lang="es"
+  title="Design System — Nube"
+  description="Catálogo de componentes del portafolio"
+  canonical={`${site}components/`}
+  alternateUrl={`${site}en/`}
+  alternateLang="en"
+  xDefaultUrl={site}
+  ogImage="/porfolio.webp"
 >
-  <SectionContainer class="py-44 pb-32 flex flex-col gap-y-10">
+  <SectionContainer sectionClass="py-44 pb-32 flex flex-col gap-y-10">
     <article class="mb-10">
       <h1 class="mb-4 text-xl font-semibold">&lt;Badge /&gt;</h1>
-
       <Badge>Disponible para trabajar</Badge>
     </article>
 
     <article class="mb-10">
       <h1 class="mb-4 text-xl font-semibold">&lt SocialPill /&gt;</h1>
-
       <div class="flex">
         <SocialPill href="https://www.linkedin.com/in/juandiegocalleg/">
           <LinkedInIcon class="size-4 md:size-6" />
@@ -29,4 +34,4 @@ import Layout from "@/layouts/Layout.astro"
       </div>
     </article>
   </SectionContainer>
-</Layout>
+</CinematicLayout>

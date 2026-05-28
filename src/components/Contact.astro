@@ -1,0 +1,51 @@
+---
+import type { PortfolioContent } from '@/i18n/types'
+
+interface Props {
+  content: PortfolioContent
+}
+
+const { content } = Astro.props
+const { site, ui } = content
+
+const links = [
+  { label: ui.contactEmail, href: `mailto:${site.email}`, primary: true },
+  { label: ui.contactLinkedIn, href: site.linkedin, external: true },
+  { label: ui.contactGithub, href: site.github, external: true },
+  { label: ui.contactCv, href: site.cv, external: true },
+  ...(site.whatsapp
+    ? [{ label: ui.contactWhatsapp, href: site.whatsapp, external: true }]
+    : []),
+]
+---
+
+<div class="paper-card p-8 md:p-12">
+  <p class="font-mono-caption uppercase text-fog-gray">{ui.contactIntro}</p>
+  <h3 class="mt-4 font-display text-4xl uppercase leading-[0.9] text-white md:text-5xl">
+    {content.contact.title}
+  </h3>
+  <p class="mt-4 max-w-xl text-base leading-[1.25] tracking-[-0.42px] text-ash-gray">{content.contact.description}</p>
+  <ul class="mt-8 flex flex-wrap gap-3">
+    {
+      links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            target={link.external ? '_blank' : undefined}
+            rel={link.external ? 'noopener noreferrer' : undefined}
+            class:list={[
+              link.primary ? 'btn-primary' : 'btn-ghost',
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="mt-6 text-sm text-fog-gray">
+    <a href={`mailto:${site.email}`} class="link-accent">
+      {site.email}
+    </a>
+  </p>
+</div>
